@@ -6,6 +6,7 @@ use App\Entity\France;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
 
+
 /**
  * @method France|null find($id, $lockMode = null, $lockVersion = null)
  * @method France|null findOneBy(array $criteria, array $orderBy = null)

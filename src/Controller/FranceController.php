@@ -63,37 +63,50 @@ class FranceController extends AbstractController
 
         $repo=$this->getDoctrine()->getRepository(France::class);
         $listAllFrance= $repo->findAll();
+        $list = array();
+        $test1 = array();
 
         //var_dump($listAllFrance);
         foreach ($listAllFrance as $lieu)
         {
-            echo "<pre>";
-            //var_dump($lieu);
-            echo $lieu->getId();
-            echo '<br>';
-            echo $lieu->getNomdusite();
-            echo '<br>';
-            echo $lieu->getLambertX();
-            echo '<br>';
-            echo $lieu->getLambertY();
-            echo '<br>';
-            var_dump(FunctionConvert::lambert93ToWgs84($lieu->getLambertX(), $lieu->getLambertY()));
-            echo '<br>';
-
-            echo '<br>************************************<br>';
             $tableau = array();
             $tableau = FunctionConvert::lambert93ToWgs84($lieu->getLambertX(), $lieu->getLambertY());
 
-            echo $tableau['wgs84']['lat'];
-            echo '<br>';
-            echo $tableau['wgs84']['long'];
-            //var_dump($tableau);
-            echo '<br><br>';
+            $test1[] =  [$lieu, $tableau['wgs84']['lat'],$tableau['wgs84']['long']];
 
-            echo "</pre>";
+
         }
-        die();
-        return $this->json($listAllFrance);
+        //dd($test1);
+        //$list[] =[$listAllFrance, $test1];
+        //dd($list);
+
+        //dd($test1);
+        return $this->render('france/maps.html.twig', [
+            'controller_name' => 'FranceController',
+            'titre' => 'Liste de tous les sites de fouilles achéologiques de france',
+            'listAllFrance' => $listAllFrance,
+            'tableau' => $test1,
+            'list'=> $list
+
+        ]);
+    }
+
+    /**
+     * @Route("/france/maps", name="listFranceMaps" )
+     */
+    public function listFranceMaps()
+    {
+
+        $repo=$this->getDoctrine()->getRepository(France::class);
+        $listAllFrance= $repo->findAll();
+
+        //var_dump($listAllFrance);
+        //die();
+        return $this->render('france/maps.html.twig', [
+            'controller_name' => 'FranceController',
+            'titre' => 'lite de tous les sites achéologiques de france',
+            'listAllFrance' => $listAllFrance
+        ]);
     }
 
 

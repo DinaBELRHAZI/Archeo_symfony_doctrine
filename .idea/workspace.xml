@@ -1,7 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="c66ca627-3150-471d-97bc-0f198d5c7a31" name="Default Changelist" comment="" />
+    <list default="true" id="c66ca627-3150-471d-97bc-0f198d5c7a31" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Controller/FranceController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/FranceController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Entity/France.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entity/France.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Repository/FranceRepository.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Repository/FranceRepository.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/france/maps.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/france/maps.html.twig" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -17,6 +23,17 @@
         <option value="composer.json" />
       </list>
     </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="GitSEFilterConfiguration">
+    <file-type-list>
+      <filtered-out-file-type name="LOCAL_BRANCH" />
+      <filtered-out-file-type name="REMOTE_BRANCH" />
+      <filtered-out-file-type name="TAG" />
+      <filtered-out-file-type name="COMMIT_BY_MESSAGE" />
+    </file-type-list>
   </component>
   <component name="PhpWorkspaceProjectConfiguration">
     <include_path>
@@ -126,6 +143,7 @@
     </include_path>
   </component>
   <component name="ProjectId" id="1oJ4UXfDyCGyTTsjTWE1uNQMc2Y" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
@@ -156,7 +174,7 @@
       <updated>1612991378686</updated>
       <workItem from="1612991380403" duration="13851000" />
       <workItem from="1613311683256" duration="1841000" />
-      <workItem from="1613313567694" duration="2056000" />
+      <workItem from="1613313567694" duration="40204000" />
     </task>
     <servers />
   </component>

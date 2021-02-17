@@ -23,7 +23,8 @@
 
 
 </body>
-
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
+    <script src="https://unpkg.com/@google/markerclustererplus@4.0.1/dist/markerclustererplus.min.js"></script>
     <script src="https://maps.google.com/maps/api/js?key=AIzaSyCS_DeN0pmFn0uwD4PPN3me89BpqDvMcV8" type="text/javascript"></script>
     <script async type="text/javascript">
         // On initialise la latitude et la longitude de Paris (centre de la carte)
@@ -58,56 +59,43 @@
 
 
 
-
-
+           
 
 
 
             {% for tab in tableau %}
 
-            newPoint1 = new google.maps.LatLng({{ tab.1}}, {{ tab.2}});
-            var commune = "{{ tab.0.Commune }}";
-            var departement = "{{ tab.0.Departement }}";
-            var periodes = "{{ tab.0.Periodes }}";
-            var region = "{{ tab.0.Region }}";
-
+            newPoint1 = new google.maps.LatLng({{ tab.0}}, {{ tab.1}});
 
             //alert(newPoint1);
             var marker = new google.maps.Marker({
 
                 position: newPoint1,
-                title: periodes,
-                //content: departement,
                 map: map
+            });
 
+            var markers = marker.map((newPoint1) => {
+                return new google.maps.Marker({
+                    position: newPoint1
+                    //label: labels[i % labels.length],
+                });
+            });
 
+            // Add a marker clusterer to manage the markers.
+            new MarkerClusterer(map, marker, {
+                imagePath:
+                    "../../m1.png"
+            });
+
+            var infowindow = new google.maps.InfoWindow({
+                content:"Hello World!"
             });
 
 
-            var infoWindowOptions = {
-                content: '<h3>'+commune+'</h3>'
-                    + '<br/>'
-                    + '<h3>'+departement+'</h3>'
-                    + '<br/>'+
-                    + '<h3>'+periodes+'</h3>'
-                    + '<br/>'
-                    + '<h3>'+region+'</h3>'
-                    + '<br/>'
-                    + '<br/>'
-            };
-
-
-            map.addListener("center_changed", () => {
-                // 3 seconds after the center of the map has changed, pan back to the
-                // marker.
-                window.setTimeout(() => {
-                    map.panTo(marker.position);
-                }, 1000);
+            marker.addListener('click', function() {
+                infowindow.open(map, marker);
             });
-            marker.addListener("click", () => {
-                map.setZoom(8);
-                map.setCenter(marker.position);
-            });
+
 
             //var infoWindowOptions = {
             //    content: '<h3>Locronan</h3>'
