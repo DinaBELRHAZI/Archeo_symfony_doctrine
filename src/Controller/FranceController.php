@@ -39,7 +39,7 @@ class FranceController extends AbstractController
 
 
     /**
-     * @Route("/liste/site/{id}", name="OneSite", requirements={"id"="\d+"},methods={"GET"})
+     * @Route("/france/liste/site/{id}", name="OneSite", requirements={"id"="\d+"},methods={"GET"})
      */
     public function indexoneSite($id)
     {
@@ -93,7 +93,7 @@ class FranceController extends AbstractController
             $tableau = FunctionConvert::lambert93ToWgs84($lieu->getLambertX(), $lieu->getLambertY());
             $tableaux[] =  [$lieu, $tableau['wgs84']['lat'],$tableau['wgs84']['long']];
         }
-        return $this->render('france/maps.html.twig',  [
+        return $this->render('france/mapslistFrance.html.twig',  [
             'controller_name' => 'FranceController',
             'titre' => 'Liste de tous les sites de fouilles achéologiques de france',
             'listAllFrance' => $listAllFrance,
@@ -121,5 +121,53 @@ class FranceController extends AbstractController
         ]);
     }
 
+
+
+    /**
+     * @Route("/france/site/new", name="creerSite" )
+     */
+    public function creationSite()
+    {
+        return $this->render('france/newSite_2.html.twig', [
+            'controller_name' => 'FranceController',
+            'titre' => "Création d'un nouveau site"
+        ]);
+    }
+
+    /**
+     * @Route("/france/newSite", name="newSite", methods={"POST"})
+     */
+    public function createOneSite(Request $request)
+    {
+
+
+        $request->request;
+
+        $entityManager = $this->getDoctrine()->getManager();
+
+        $site = new France();
+        $site->setLambertX($request->request->get('Lambert_X'));
+        $site->setLambertY($request->request->get('Lambert_Y'));
+        $site->setRegion($request->request->get('Region'));
+        $site->setDepartement($request->request->get('Departement'));
+        $site->setCommune($request->request->get('Commune'));
+        $site->setNomDuSite($request->request->get('Nom_du_site'));
+        $site->setDateDebut($request->request->get('Date_debut'));
+        $site->setDateFin($request->request->get('Date_fin'));
+        $site->setPeriodes($request->request->get('Periodes'));
+        $site->setThemes($request->request->get('Themes'));
+        $site->setTypeIntervention($request->request->get('Type_intervention'));
+
+        // tells Doctrine you want to (eventually) save the Product (no queries yet)
+        $entityManager->persist($site);
+
+        // actually executes the queries (i.e. the INSERT query)
+        $entityManager->flush();
+
+        return new Response($site->getId());
+
+
+
+    }
 
 }

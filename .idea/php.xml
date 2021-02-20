@@ -105,6 +105,10 @@
       <path value="$PROJECT_DIR$/vendor/symfony/http-kernel" />
       <path value="$PROJECT_DIR$/vendor/symfony/intl" />
       <path value="$PROJECT_DIR$/vendor/symfony/web-server-bundle" />
+      <path value="$PROJECT_DIR$/vendor/font-awesome-4.7/fonts" />
+      <path value="$PROJECT_DIR$/vendor/font-awesome-4.7/css" />
+      <path value="$PROJECT_DIR$/vendor/mdi-font/fonts" />
+      <path value="$PROJECT_DIR$/vendor/mdi-font/css" />
     </include_path>
   </component>
   <component name="PhpProjectSharedConfiguration" php_language_level="7.2" />

@@ -26,6 +26,12 @@
 
         #map{ /* la carte DOIT avoir une hauteur sinon elle n'apparaît pas */
             height:400px;
+
+        }
+
+        #streetView{
+            height:400px;
+            border: 1rem solid;
         }
 
         .container{
@@ -36,6 +42,15 @@
             font-size: 2em;
             font-weight: bold;
         }
+
+
+        element.style {
+        }
+        .container {
+            margin-top: 5%;
+        }
+
+
     </style>
 
 </head>
@@ -56,28 +71,29 @@
 </div>
 
 <div class='container'>
-    <div class='col-sm-4 col-md-4' style="">
+    <div class='col-sm-4 col-md-4' >
         <div class="card text-white bg-dark mb-3" >
             <div class="card-header">{{ oneSite.getNomdusite()}}</div>
             <div class="card-body">
-                <h3 class="card-title"><b>Type d'intervention : </b></h3>
-                <h4>{{ oneSite.getTypeIntervention()}}</h4>
                 <p class="card-text">
+                <h3><b>Type d'intervention : </b></h3>
+                <h4>{{ oneSite.getTypeIntervention()}}</h4>
+                <hr>
                 <h3><b>Adresse : </b></h3>
                 <h4>{{ oneSite.getRegion()}}
                     <br>{{ oneSite.getDepartement()}}, {{ oneSite.getCommune()}}
                 </h4>
-                <br><br>
+                <hr>
                 <h3><b>Dates :</b></h3>
                 <h4>
                     {{ oneSite.getDateDebut()}} - {{ oneSite.getDateFin()}}
                 </h4>
-                <br><br>
+                <hr>
                 <h3><b>Période :</b></h3>
                 <h4>
                     {{ oneSite.getPeriodes()}}
                 </h4>
-                <br><br>
+                <hr>
                 <h3><b>Thème :</b></h3>
                 <h4>
                     {{ oneSite.getThemes()}}
@@ -85,10 +101,10 @@
             </div>
         </div>
     </div>
-
-    <div id="map">
+    <div id="map" class='col-sm-4 col-md-4'>
         <!-- Ici s'affichera la carte -->
     </div>
+    <div id="streetView" class='col-sm-4 col-md-4'></div>
 </div>
 
 </body>
@@ -112,7 +128,7 @@
             // Nous plaçons le centre de la carte avec les coordonnées ci-dessus
             center: new google.maps.LatLng(lat, lon),
             // Nous définissons le zoom par défaut
-            zoom: 6,
+            zoom: 5,
             // Nous définissons le type de carte (ici carte routière)
             mapTypeId: google.maps.MapTypeId.ROADMAP,
             // Nous activons les options de contrôle de la carte (plan, satellite...)
@@ -132,6 +148,20 @@
         });
 
 
+        //function appellée pour afficher la viewstreet à partir de coordonnées
+        function streetView(myPointStreet){
+            var panorama = new google.maps.StreetViewPanorama(
+                document.getElementById('streetView'), {
+                    position: myPointStreet,
+                    pov: {
+                        heading: 34,
+                        pitch: 10
+                    }
+                });
+            map.setStreetView(panorama);
+        }
+
+
         var Nom_du_site = "{{ oneSite.getNomdusite()}}";
 
         {% for tab in tableau %}
@@ -145,6 +175,20 @@
                 title: Nom_du_site,
                 map: map
             });
+
+
+
+        (function (marker,pointrecu) {
+            google.maps.event.addListener(marker, "click", function (e) {
+
+
+
+                //appel de la fonction streetView + paramètre pointrecu (newPoint1)
+                streetView(pointrecu);
+
+            });
+            //Variables déclarées plus haut mis en paramètre
+        }) (marker, newPoint1)
 
         {%  endfor %}
 

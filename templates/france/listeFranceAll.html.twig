@@ -67,6 +67,11 @@
             <h3>Carte entière</h3>
         </a>
     </strong>
+    <strong>
+        <a class="btn btn-outline-info" href='{{ path("creerSite") }}' style="margin-bottom: 2%;  margin-left: 2%;" >
+            <h3>Créer un nouveau site</h3>
+        </a>
+    </strong>
 </div>
 
 <div class='container'>
@@ -91,7 +96,7 @@
                             {{ list.getDateDebut()}} - {{ list.getDateFin()}}
                         </h4>
                     </div>
-                    <strong><a class="btn btn-outline-primary" id="btn_plus" href='/liste/site/{{ list.id}}' style="margin-bottom: 5%;"><h3>Voir plus </h3></a></strong>
+                    <strong><a class="btn btn-outline-primary" id="btn_plus" href='/france/liste/site/{{ list.id}}' style="margin-bottom: 5%;"><h3>Voir plus </h3></a></strong>
                 </div>
         </div>
 

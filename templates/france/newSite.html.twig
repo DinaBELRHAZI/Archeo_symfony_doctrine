@@ -1,0 +1,50 @@
+{%  block content %}
+
+    <div class='container'>
+
+        <div class='col-sm-4 col-md-4'>
+            <form name="monform" action="{{ path('newSite') }}" method="POST" enctype="multipart/form-data">
+
+                    <div class="form-group">
+                        <label>Coordonées Lambert_X :*</label>
+                        <input type="text" class="form-control" name="Lambert_X" id="Lambert_X" value="" required>
+                    <hr>
+                        <label>Coordonées Lambert_Y :*</label>
+                        <input type="text" class="form-control" name="Lambert_Y" id="Lambert_Y" value="" required>
+                    <hr>
+                        <label>Région :*</label>
+                        <input type="text" class="form-control" name="Region" id="Region" value="" required>
+                    <hr>
+                        <label>Departement :*</label>
+                        <input type="text" class="form-control" name="Departement" id="Departement" value="" required>
+                    <hr>
+                        <label>Commune :*</label>
+                        <input type="text" class="form-control" name="Commune" id="Commune" value="" required>
+                    <hr>
+                        <label>Nom du site :*</label>
+                        <input type="text" class="form-control" name="Nom_du_site" id="Nom_du_site" value="" required>
+                    <hr>
+                        <label>Date de début :*</label>
+                        <input type="text" class="form-control" name="Date_debut" id="Date_debut" value="" required>
+                    <hr>
+                        <label>Date de fin :*</label>
+                        <input type="text" class="form-control" name="Date_fin" id="Date_fin" value="" required>
+                    <hr>
+                        <label>Périodes :</label>
+                        <input type="text" class="form-control" name="Periodes" id="Periodes" value="" >
+                    <hr>
+                        <label>Thèmes :</label>
+                        <input type="text" class="form-control" name="Themes" id="Themes" value="" >
+                    <hr>
+                        <label>Type d'intervention :*</label>
+                        <input type="text" class="form-control" name="Type_intervention" id="Type_intervention" value="" required>
+
+                    <hr>
+                        <input class="btn btn-primary" type="submit" value="Envoyer">
+
+                    </div>
+            </form>
+        </div>
+    </div>
+
+{%  endblock  %}
