@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html >
+<head>
+    <title>Tous les sites de fouilles archéologiques en France</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/pizza.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+</head>
+<body>
+
+
+
+<div class='jumbotron'>
+    <h1 class='text-center'>ma liste de Clients</h1>
+    <p class='text-center'>Bootstrap is the most popular HTML, CSS...</p>
+
+    <a class='create btn btn-info' href='creerPizza.php'>Créer Pizza</a>
+
+</div>
+
+<div class='container'>
+
+    {% for list in listAllFrance %}
+
+
+        <div class='col-sm-4 col-md-4'>
+
+
+            <div class='description'>
+                <h2><b>{{ list.getNomdusite()}} </b></h2>
+                <br>
+                <h4>Adresse : {{ list.getRegion()}}
+                <br>{{ list.getDepartement()}}, {{ list.getCommune()}} </h4>
+                <h4><b>Dates :</b> {{ list.getDateDebut()}} - {{ list.getDateFin()}}</h4> <br>
+
+
+
+
+
+                <a class='btn btn-info' href='listeFranceAll/{{ list.id}}'>Voir plus </a>
+            </div>
+        </div>
+    {%  endfor %}
+
+</div>
+
+
+</body>
+</html> 
+ 

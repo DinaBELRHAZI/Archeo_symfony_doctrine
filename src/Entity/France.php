@@ -68,8 +68,6 @@ class France
     private $Themes;
 
 
-
-
     /**
      * @ORM\Column(name="Type_intervention",type="string", length=255)
      */

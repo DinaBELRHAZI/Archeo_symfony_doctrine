@@ -27,12 +27,9 @@ class FranceController extends AbstractController
      */
     public function listeFranceAll()
     {
-
         $repo=$this->getDoctrine()->getRepository(France::class);
         $listAllFrance= $repo->findAll();
 
-        //var_dump($listAllFrance);
-        //die();
         return $this->render('france/listeFranceAll.html.twig', [
             'controller_name' => 'FranceController',
             'titre' => 'lite de tous les sites achéologiques de france',
@@ -42,18 +39,41 @@ class FranceController extends AbstractController
 
 
     /**
+     * @Route("/liste/site/{id}", name="OneSite", requirements={"id"="\d+"},methods={"GET"})
+     */
+    public function indexoneSite($id)
+    {
+        $repo=$this->getDoctrine()->getRepository(France::class);
+        $oneSite= $repo->find($id);
+
+        $tableaux = array();
+        $tableau = array();
+
+        $tableau = FunctionConvert::lambert93ToWgs84($oneSite->getLambertX(), $oneSite->getLambertY());
+        $tableaux[] =  [$oneSite, $tableau['wgs84']['lat'],$tableau['wgs84']['long']];
+
+
+        return $this->render('france/listeFranceOneSite.html.twig', [
+            'controller_name' => 'FranceController',
+            'titre' => 'Un site',
+            'oneSite' => $oneSite,
+            'tableau' => $tableaux
+        ]);
+    }
+
+
+    /**
      * @Route("/france/apiJson", name="listAllFranceJson" )
      */
     public function listeFranceJson()
     {
-
         $repo=$this->getDoctrine()->getRepository(France::class);
         $listAllFrance= $repo->findAll();
 
-        //var_dump($listAllFrance);
-        //die();
         return $this->json($listAllFrance);
     }
+
+
 
     /**
      * @Route("/france/convert", name="listeFranceConvert" )
@@ -62,31 +82,23 @@ class FranceController extends AbstractController
     {
 
         $repo=$this->getDoctrine()->getRepository(France::class);
-        $listAllFrance= $repo->findAll();
-        $list = array();
-        $test1 = array();
+        //$listAllFrance= $repo->findAll();
+        $listAllFrance= $repo->findBy(array(),array('id'=>'DESC'),10, 0);
 
-        //var_dump($listAllFrance);
+        $tableaux = array();
+
         foreach ($listAllFrance as $lieu)
         {
             $tableau = array();
             $tableau = FunctionConvert::lambert93ToWgs84($lieu->getLambertX(), $lieu->getLambertY());
-
-            $test1[] =  [$lieu, $tableau['wgs84']['lat'],$tableau['wgs84']['long']];
-
-
+            $tableaux[] =  [$lieu, $tableau['wgs84']['lat'],$tableau['wgs84']['long']];
         }
-        //dd($test1);
-        //$list[] =[$listAllFrance, $test1];
-        //dd($list);
-
-        //dd($test1);
-        return $this->render('france/maps.html.twig', [
+        return $this->render('france/maps.html.twig',  [
             'controller_name' => 'FranceController',
             'titre' => 'Liste de tous les sites de fouilles achéologiques de france',
             'listAllFrance' => $listAllFrance,
-            'tableau' => $test1,
-            'list'=> $list
+            'tableau' => $tableaux
+
 
         ]);
     }
