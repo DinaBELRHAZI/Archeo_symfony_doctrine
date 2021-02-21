@@ -1,0 +1,40 @@
+body{
+    background-color: darkolivegreen;
+}
+
+.header {
+    background-color: black;
+}
+
+.text-center {
+    color: azure;
+    font-size: 4.5em;
+    font-weight: 200;
+    padding-top: 3%;
+}
+
+#map{ /* la carte DOIT avoir une hauteur sinon elle n'apparaît pas */
+    height:400px;
+
+}
+
+#streetView{
+    height:400px;
+    border: 1rem solid;
+}
+
+.container{
+    margin-top: 5%;
+}
+
+.card-header{
+    font-size: 2em;
+    font-weight: bold;
+}
+
+
+element.style {
+}
+.container {
+    margin-top: 5%;
+}

@@ -22,6 +22,8 @@ class FranceController extends AbstractController
     }
 
 
+    //Liste de tout les sites de fouille de France
+
     /**
      * @Route("/france/liste", name="listAllFrance" )
      */
@@ -37,6 +39,8 @@ class FranceController extends AbstractController
         ]);
     }
 
+
+    //Affichage des informations d'un site à partir de son id
 
     /**
      * @Route("/france/liste/site/{id}", name="OneSite", requirements={"id"="\d+"},methods={"GET"})
@@ -74,6 +78,7 @@ class FranceController extends AbstractController
     }
 
 
+// Maps
 
     /**
      * @Route("/france/convert", name="listeFranceConvert" )
@@ -82,18 +87,19 @@ class FranceController extends AbstractController
     {
 
         $repo=$this->getDoctrine()->getRepository(France::class);
-        //$listAllFrance= $repo->findAll();
-        $listAllFrance= $repo->findBy(array(),array('id'=>'DESC'),10, 0);
+        $listAllFrance= $repo->findAll();
+        //$listAllFrance= $repo->findBy(array(),array('id'=>'DESC'),10, 0);
 
         $tableaux = array();
 
         foreach ($listAllFrance as $lieu)
         {
             $tableau = array();
+            //convertion des coordonées Lambert en WGS84
             $tableau = FunctionConvert::lambert93ToWgs84($lieu->getLambertX(), $lieu->getLambertY());
             $tableaux[] =  [$lieu, $tableau['wgs84']['lat'],$tableau['wgs84']['long']];
         }
-        return $this->render('france/mapslistFrance.html.twig',  [
+        return $this->render('france/maps.html.twig',  [
             'controller_name' => 'FranceController',
             'titre' => 'Liste de tous les sites de fouilles achéologiques de france',
             'listAllFrance' => $listAllFrance,
@@ -122,6 +128,7 @@ class FranceController extends AbstractController
     }
 
 
+    //Formulaire de création de site
 
     /**
      * @Route("/france/site/new", name="creerSite" )
