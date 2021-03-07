@@ -8,6 +8,7 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\Request;
 use App\Entity\FunctionConvert;
+use Knp\Component\Pager\PaginatorInterface;
 
 class FranceController extends AbstractController
 {
@@ -31,6 +32,7 @@ class FranceController extends AbstractController
     {
         $repo=$this->getDoctrine()->getRepository(France::class);
         $listAllFrance= $repo->findAll();
+
 
         return $this->render('france/listeFranceAll.html.twig', [
             'controller_name' => 'FranceController',
@@ -135,6 +137,7 @@ class FranceController extends AbstractController
      */
     public function creationSite()
     {
+        //dd("toto");
         return $this->render('france/newSite_2.html.twig', [
             'controller_name' => 'FranceController',
             'titre' => "Création d'un nouveau site"

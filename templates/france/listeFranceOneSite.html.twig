@@ -13,6 +13,8 @@
 </head>
 <body>
 
+
+
 <div class='header'>
     <p class='text-center'>{{ oneSite.getNomdusite}}</p>
     <strong>
@@ -62,6 +64,7 @@
         <!-- Ici s'affichera la carte -->
     </div>
     <div id="streetView" class='col-sm-4 col-md-4'></div>
+
 </div>
 
 </body>
@@ -133,9 +136,9 @@
                 map: map
             });
 
+        streetView(newPoint1);
 
-
-        (function (marker,pointrecu) {
+        /*(function (marker,pointrecu) {
             google.maps.event.addListener(marker, "click", function (e) {
 
 
@@ -145,7 +148,7 @@
 
             });
             //Variables déclarées plus haut mis en paramètre
-        }) (marker, newPoint1)
+        }) (marker, newPoint1)*/
 
         {%  endfor %}
 

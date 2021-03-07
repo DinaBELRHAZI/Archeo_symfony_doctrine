@@ -2,14 +2,15 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="c66ca627-3150-471d-97bc-0f198d5c7a31" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/php.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/php.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/css/examples.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/css/pizza.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/css/maps.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/css/maps.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Controller/FranceController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/FranceController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/france/index.html.twig" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/france/listeFranceAll.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/france/listeFranceAll.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Kernel.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Kernel.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/symfony.lock" beforeDir="false" afterPath="$PROJECT_DIR$/symfony.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/templates/france/listeFranceOneSite.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/france/listeFranceOneSite.html.twig" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/templates/france/maps.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/france/maps.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/france/newSite_2.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/france/newSite_2.html.twig" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -25,6 +26,7 @@
       <list>
         <option value="composer.json" />
         <option value="CSS File" />
+        <option value="JavaScript File" />
       </list>
     </option>
   </component>
@@ -144,10 +146,6 @@
       <path value="$PROJECT_DIR$/vendor/symfony/http-kernel" />
       <path value="$PROJECT_DIR$/vendor/symfony/intl" />
       <path value="$PROJECT_DIR$/vendor/symfony/web-server-bundle" />
-      <path value="$PROJECT_DIR$/vendor/font-awesome-4.7/fonts" />
-      <path value="$PROJECT_DIR$/vendor/font-awesome-4.7/css" />
-      <path value="$PROJECT_DIR$/vendor/mdi-font/fonts" />
-      <path value="$PROJECT_DIR$/vendor/mdi-font/css" />
     </include_path>
   </component>
   <component name="ProjectId" id="1oJ4UXfDyCGyTTsjTWE1uNQMc2Y" />
@@ -160,7 +158,7 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/templates/france" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../Projet-Symfony-Commerces-Confinement" />
     <property name="list.type.of.created.stylesheet" value="CSS" />
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="vue.rearranger.settings.migration" value="true" />
@@ -183,7 +181,9 @@
       <updated>1612991378686</updated>
       <workItem from="1612991380403" duration="13851000" />
       <workItem from="1613311683256" duration="1841000" />
-      <workItem from="1613313567694" duration="97307000" />
+      <workItem from="1613313567694" duration="100999000" />
+      <workItem from="1614800439247" duration="32331000" />
+      <workItem from="1615073107155" duration="463000" />
     </task>
     <servers />
   </component>
