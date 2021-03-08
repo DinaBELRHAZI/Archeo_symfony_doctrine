@@ -176,7 +176,78 @@ class FranceController extends AbstractController
 
         return new Response($site->getId());
 
+    }
 
+
+    //Formulaire de modification d'un site
+
+    /**
+     * @Route("/france/site/update/{id}", name="updateSite" , requirements={"id"="\d+"},methods={"GET"})
+     */
+    public function updateSite($id)
+    {
+
+        /*$repo=$this->getDoctrine()->getRepository(France::class);
+        $oneSite= $repo->find($id);
+        //dd("toto");
+        return $this->render('france/updateSite.html.twig', [
+            'controller_name' => 'FranceController',
+            'titre' => "Modification d'un site",
+            '$oneSite' => $oneSite
+        ]);*/
+
+
+        $repo=$this->getDoctrine()->getRepository(France::class);
+        $oneSite= $repo->find($id);
+
+        $tableaux = array();
+        $tableau = array();
+
+        $tableau = FunctionConvert::lambert93ToWgs84($oneSite->getLambertX(), $oneSite->getLambertY());
+        $tableaux[] =  [$oneSite, $tableau['wgs84']['lat'],$tableau['wgs84']['long']];
+
+
+        return $this->render('france/updateSite.html.twig', [
+            'controller_name' => 'FranceController',
+            'titre' => 'Un site',
+            'oneSite' => $oneSite,
+            'tableau' => $tableaux
+        ]);
+    }
+
+    /**
+     * @Route("/france/updateSite/{id}", name="modifSite" , requirements={"id"="\d+"}, methods={"POST"})
+     */
+    public function updateOneSite(Request $request, $id)
+    {
+
+
+        $request->request;
+
+        $entityManager = $this->getDoctrine()->getManager();
+        $site = $entityManager->getRepository(France::class)->find($id);
+
+        //$site = new France();
+        $site->setLambertX($request->request->get('Lambert_X'));
+        $site->setLambertY($request->request->get('Lambert_Y'));
+        $site->setRegion($request->request->get('Region'));
+        $site->setDepartement($request->request->get('Departement'));
+        $site->setCommune($request->request->get('Commune'));
+        $site->setNomDuSite($request->request->get('Nom_du_site'));
+        $site->setDateDebut($request->request->get('Date_debut'));
+        $site->setDateFin($request->request->get('Date_fin'));
+        $site->setPeriodes($request->request->get('Periodes'));
+        $site->setThemes($request->request->get('Themes'));
+        $site->setTypeIntervention($request->request->get('Type_intervention'));
+
+        // tells Doctrine you want to (eventually) save the Product (no queries yet)
+        $entityManager->persist($site);
+
+        // actually executes the queries (i.e. the INSERT query)
+        $entityManager->flush();
+
+        //return new Response($site->getId());
+        return $this->redirectToRoute('listAllFrance');
 
     }
 

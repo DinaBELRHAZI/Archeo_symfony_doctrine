@@ -50,7 +50,11 @@
                             {{ list.getDateDebut()}} - {{ list.getDateFin()}}
                         </h4>
                     </div>
-                    <strong><a class="btn btn-outline-primary" id="btn_plus" href='/france/liste/site/{{ list.id}}' style="margin-bottom: 5%;"><h3>Voir plus </h3></a></strong>
+                    <strong>
+
+                        <a class="btn btn-outline-primary" id="btn_plus" href='/france/liste/site/{{ list.id}}' style="margin-bottom: 5%;"><h3>Plus de détails </h3></a>
+                        <a class="btn btn-outline-warning" id="btn_plus" href='/france/site/update/{{ list.id}}' style="margin-bottom: 5%;"><h3>Modifier </h3></a>
+                    </strong>
                 </div>
         </div>
 
