@@ -38,7 +38,7 @@
                         <!-- Partie gauche -->
 
                         <input class="input--style-3" type="hidden" name="id" id="id" value="{{ oneSite.getId}}">
-                        <div style="float: left;">
+                        <div id="left_part">
                             <div class="input-group">
                                 <label>Nom du site :*</label>
                                 <input class="input--style-3" type="text" name="Nom_du_site" id="Nom_du_site" value="{{ oneSite.getNomdusite}}" required>
@@ -65,7 +65,7 @@
                             </div>
                         </div>
                         <!-- Partie droite -->
-                        <div style="float: right; margin-left: 50px;">
+                        <div id="right_part">
                             <div class="input-group">
                                 <label>Date de début :*</label>
                                 <input class="input--style-3 js-datepicker" type="text" name="Date_debut" id="Date_debut" value="{{ oneSite.getDateDebut}}" required>

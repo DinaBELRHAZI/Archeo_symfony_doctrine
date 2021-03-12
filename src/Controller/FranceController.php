@@ -8,7 +8,6 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\Request;
 use App\Entity\FunctionConvert;
-use Knp\Component\Pager\PaginatorInterface;
 
 class FranceController extends AbstractController
 {
@@ -64,6 +63,24 @@ class FranceController extends AbstractController
             'titre' => 'Un site',
             'oneSite' => $oneSite,
             'tableau' => $tableaux
+        ]);
+    }
+
+
+
+    /**
+     * @Route("/france/liste/site/{id}/photos", name="OneSitePhotos", requirements={"id"="\d+"},methods={"GET"})
+     */
+    public function OneSitePhotos($id)
+    {
+        $repo=$this->getDoctrine()->getRepository(France::class);
+        $oneSite= $repo->find($id);
+
+        return $this->render('france/listeFranceOneSitePhotos.html.twig', [
+            'controller_name' => 'FranceController',
+            'titre' => 'Un site',
+            'oneSite' => $oneSite
+            /*'tableau' => $tableaux*/
         ]);
     }
 
@@ -137,7 +154,6 @@ class FranceController extends AbstractController
      */
     public function creationSite()
     {
-        //dd("toto");
         return $this->render('france/newSite_2.html.twig', [
             'controller_name' => 'FranceController',
             'titre' => "Création d'un nouveau site"
@@ -149,8 +165,6 @@ class FranceController extends AbstractController
      */
     public function createOneSite(Request $request)
     {
-
-
         $request->request;
 
         $entityManager = $this->getDoctrine()->getManager();
@@ -179,6 +193,52 @@ class FranceController extends AbstractController
     }
 
 
+
+    /* Formulaire d'ajout de photos */
+
+
+    /**
+     * @Route("/france/liste/site/{id}/photos/ajout", name="OneSitePhotosAjout", requirements={"id"="\d+"},methods={"GET"})
+     */
+    public function OneSitePhotosAjout($id)
+    {
+        $repo=$this->getDoctrine()->getRepository(France::class);
+        $oneSite= $repo->find($id);
+
+        return $this->render('france/listeFranceOneSitePhotosForm.html.twig', [
+            'controller_name' => 'FranceController',
+            'titre' => 'Un site',
+            'oneSite' => $oneSite
+        ]);
+    }
+
+
+    /**
+     * @Route("/france/liste/site/photos/add", name="OneSitePhotosAdd", methods={"POST"})
+     */
+    public function OneSitePhotosAdd(Request $request)
+    {
+        $request->request;
+
+        $entityManager = $this->getDoctrine()->getManager();
+
+        $img = new Images();
+
+        $img->setName($request->request->get('name'));
+        $img->setIdFrance($request->request->get('id_france'));
+
+
+        // tells Doctrine you want to (eventually) save the Product (no queries yet)
+        $entityManager->persist($img);
+
+        // actually executes the queries (i.e. the INSERT query)
+        $entityManager->flush();
+
+        return $this->redirectToRoute('OneSitePhotos');
+    }
+
+
+
     //Formulaire de modification d'un site
 
     /**
@@ -186,17 +246,6 @@ class FranceController extends AbstractController
      */
     public function updateSite($id)
     {
-
-        /*$repo=$this->getDoctrine()->getRepository(France::class);
-        $oneSite= $repo->find($id);
-        //dd("toto");
-        return $this->render('france/updateSite.html.twig', [
-            'controller_name' => 'FranceController',
-            'titre' => "Modification d'un site",
-            '$oneSite' => $oneSite
-        ]);*/
-
-
         $repo=$this->getDoctrine()->getRepository(France::class);
         $oneSite= $repo->find($id);
 
@@ -205,7 +254,6 @@ class FranceController extends AbstractController
 
         $tableau = FunctionConvert::lambert93ToWgs84($oneSite->getLambertX(), $oneSite->getLambertY());
         $tableaux[] =  [$oneSite, $tableau['wgs84']['lat'],$tableau['wgs84']['long']];
-
 
         return $this->render('france/updateSite.html.twig', [
             'controller_name' => 'FranceController',

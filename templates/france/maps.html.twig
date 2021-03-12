@@ -26,10 +26,6 @@
         </a>
     </strong>
     </div>
-    {#<div id="pano-info">
-        <div id="streetView"></div>
-        <div id="info-streetView"></div>
-    </div>#}
 </div>
 
 
@@ -42,7 +38,7 @@
 
     <!-- JavaScript Bundle with Popper -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.bundle.min.js" integrity="sha384-b5kHyXgcpbZJO/tY9Ul7kGkf1S0CWuKcCD38l8YkeH8z8QjE0GmW1gYU5S9FOnJ0" crossorigin="anonymous"></script>
-    <script src="https://maps.google.com/maps/api/js?key=AIzaSyCS_DeN0pmFn0uwD4PPN3me89BpqDvMcV8" type="text/javascript"></script>
+    <script src="https://maps.google.com/maps/api/js?key=" type="text/javascript"></script>
 
 <!-- Carte -->
 
@@ -79,7 +75,7 @@
 
 
 
-            //function appellée pour afficher la viewstreet à partir de coordonnées
+            //function appellée pour afficher la streetView à partir de coordonnées
             function streetView(myPointStreet){
                 var panorama = new google.maps.StreetViewPanorama(
                     document.getElementById('streetView'), {
@@ -153,7 +149,7 @@
                             +'<a><b>Période : </b></a>'
                             +'<a>'+periodes1+'</a>'
                             +'<hr>'
-                            + "<a class='btn btn-outline-primary' id='btn_plus' href='/france/liste/site/"+num1+"' >Voir plus </a>"
+                            + "<a class='btn btn-outline-primary' id='btn_plus' href='/france/liste/site/"+num1+"' >Détails </a>"
                             +"</div>"
                         );
 

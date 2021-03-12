@@ -35,10 +35,23 @@ body{
 .card-body {
     padding-left: 5%;
     padding-top: 5%
-
 }
 
 
 h3 b{
     color: olive;
+}
+
+#btn-carte {
+    margin-bottom: 2%;
+    margin-left: 2%;
+}
+
+#btn-creer{
+    margin-bottom: 2%;
+    margin-left: 2%;
+}
+
+#btn_plus{
+    margin-bottom: 5%;
 }
