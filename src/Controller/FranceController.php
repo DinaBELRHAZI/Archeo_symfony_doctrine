@@ -3,11 +3,13 @@
 namespace App\Controller;
 
 use App\Entity\France;
+use App\Entity\Images;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\Request;
 use App\Entity\FunctionConvert;
+use Symfony\Component\HttpFoundation\File\UploadedFile;
 
 class FranceController extends AbstractController
 {
@@ -218,14 +220,29 @@ class FranceController extends AbstractController
      */
     public function OneSitePhotosAdd(Request $request)
     {
+        $request->files;
         $request->request;
+        //dd($request->files);
 
         $entityManager = $this->getDoctrine()->getManager();
 
         $img = new Images();
 
-        $img->setName($request->request->get('name'));
+        $uploadedFile = $request->files->get('name');
+        $destination = $this->getParameter('kernel.project_dir').'/public/uploads';
+        $newFilename = uniqid().'-'.$uploadedFile->getClientOriginalName();
+        //dd($uploadedFile->move($destination));
+        $uploadedFile->move(
+            $destination,
+            $newFilename
+        );
+
+        $img->setName($newFilename);
         $img->setIdFrance($request->request->get('id_france'));
+
+        //$img->$request->files->get('name');
+        //$img->setIdFrance($request->request->get('id_france'));
+
 
 
         // tells Doctrine you want to (eventually) save the Product (no queries yet)
