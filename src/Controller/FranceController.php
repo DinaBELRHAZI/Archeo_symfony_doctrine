@@ -53,6 +53,7 @@ class FranceController extends AbstractController
         $repo=$this->getDoctrine()->getRepository(France::class);
         $oneSite= $repo->find($id);
 
+
         $tableaux = array();
         $tableau = array();
 
@@ -78,10 +79,16 @@ class FranceController extends AbstractController
         $repo=$this->getDoctrine()->getRepository(France::class);
         $oneSite= $repo->find($id);
 
+        $repo2=$this->getDoctrine()->getRepository(Images::class);
+
+        $images= $repo2->findBy(['id_france'=> $id ]);
+        /*dd($images);*/
+
         return $this->render('france/listeFranceOneSitePhotos.html.twig', [
             'controller_name' => 'FranceController',
             'titre' => 'Un site',
-            'oneSite' => $oneSite
+            'oneSite' => $oneSite,
+            'images' => $images
             /*'tableau' => $tableaux*/
         ]);
     }
@@ -200,7 +207,7 @@ class FranceController extends AbstractController
 
 
     /**
-     * @Route("/france/liste/site/{id}/photos/ajout", name="OneSitePhotosAjout", requirements={"id"="\d+"},methods={"GET"})
+     * @Route("/france/liste/site/{id}/photos/ajout", name="OneSitePhotosAjout", requirements={"id"="\d+"})
      */
     public function OneSitePhotosAjout($id)
     {
@@ -220,8 +227,11 @@ class FranceController extends AbstractController
      */
     public function OneSitePhotosAdd(Request $request)
     {
+        //$_FILES
         $request->files;
+        //$_POST
         $request->request;
+
         //dd($request->files);
         //dd($request->request);
 
@@ -230,9 +240,12 @@ class FranceController extends AbstractController
         $img = new Images();
 
         $uploadedFile = $request->files->get('name');
+        /* Chemin du dossier uploads*/
         $destination = $this->getParameter('kernel.project_dir').'/public/uploads';
+        /* Donne un nom unique à l'image*/
         $newFilename = uniqid().'-'.$uploadedFile->getClientOriginalName();
         //dd($uploadedFile->move($destination));
+        /* Déplacement de l'image dans le dossier uploads  */
         $uploadedFile->move(
             $destination,
             $newFilename
@@ -244,15 +257,13 @@ class FranceController extends AbstractController
         //$img->$request->files->get('name');
         //$img->setIdFrance($request->request->get('id_france'));
 
-
-
-        // tells Doctrine you want to (eventually) save the Product (no queries yet)
+        // tells Doctrine you want to (eventually) save the Images (no queries yet)
         $entityManager->persist($img);
 
         // actually executes the queries (i.e. the INSERT query)
         $entityManager->flush();
 
-        return $this->redirectToRoute('OneSitePhotos');
+        return $this->redirectToRoute('listAllFrance');
     }
 
 

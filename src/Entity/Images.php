@@ -13,7 +13,7 @@ class Images
     /**
      * @ORM\Id
      * @ORM\GeneratedValue
-     * @ORM\Column(type="integer")
+     * @ORM\Column(type="integer",name="id_img")
      */
     private $id;
 
