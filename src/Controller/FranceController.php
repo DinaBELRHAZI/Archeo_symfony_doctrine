@@ -223,6 +223,7 @@ class FranceController extends AbstractController
         $request->files;
         $request->request;
         //dd($request->files);
+        //dd($request->request);
 
         $entityManager = $this->getDoctrine()->getManager();
 
